@@ -1,0 +1,26 @@
+{
+    "name": "nathanmac/softlayer-message-queue-php",
+    "description": "Softlayer PHP Library to access the Message Queue API",
+    "keywords": ["library", "softlayer", "message queue"],
+    "homepage": "https://github.com/nathanmac/softlayer-message-queue-php",
+    "authors": [
+        {
+            "name": "Nathan Macnamara",
+            "email": "nathan.macnamara@outlook.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "vlucas/phpdotenv": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SoftLayer\\": "src/Softlayer"
+        }
+    },
+    "minimum-stability": "stable"
+}
