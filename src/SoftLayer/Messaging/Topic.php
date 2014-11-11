@@ -1,6 +1,7 @@
 <?php
+namespace SoftLayer\Messaging;
 
-class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
+class Topic extends Entity
 {
     protected static $emit = array('name', 'tags');
 
@@ -80,7 +81,7 @@ class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
 
     public function message($body = '')
     {
-        $message = new SoftLayer_Messaging_Message();
+        $message = new \SoftLayer\Messaging\Message();
         $message->setParent($this);
         $message->setBody($body);
         return $message;
@@ -88,7 +89,7 @@ class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
 
     public function subscription($endpoint_type = '')
     {
-        $subscription = new SoftLayer_Messaging_Subscription();
+        $subscription = new \SoftLayer\Messaging\Subscription();
         $subscription->setParent($this);
         $subscription->setEndpointType($endpoint_type);
         return $subscription;
@@ -100,11 +101,11 @@ class SoftLayer_Messaging_Topic extends SoftLayer_Messaging_Entity
         $response = $this->getClient()->get("/topics/".$this->getName()."/subscriptions");
 
         foreach($response->getBody()->items as $item) {
-            $subscription = new SoftLayer_Messaging_Subscription();
+            $subscription = new \SoftLayer\Messaging\Subscription();
             $subscription->setParent($this);
             $subscription->unserialize($item);
 
-            $endpoint = SoftLayer_Messaging_Endpoint::endpointByType($subscription->getEndpointType());
+            $endpoint = \SoftLayer\Messaging\Endpoint::endpointByType($subscription->getEndpointType());
             $endpoint->setParent($subscription);
             $endpoint->unserialize($subscription->getEndpoint());
 

@@ -1,6 +1,7 @@
 <?php
+namespace SoftLayer\Http;
 
-class SoftLayer_Http_Client
+class Client
 {
     private $baseUrl = '';
     private $middleware = array();
@@ -11,14 +12,14 @@ class SoftLayer_Http_Client
 
     public static function getClient()
     {
-        $client = new SoftLayer_Http_Client();
+        $client = new Client();
 
         // Default adapter
-        $client->setAdapter(new SoftLayer_Http_Adapter_Curl());
+        $client->setAdapter(new \SoftLayer\Http\Adapter\Curl());
 
         // Middleware
-        $client->addMiddleware(new SoftLayer_Http_Middleware_Core());
-        $client->addMiddleware(new SoftLayer_Http_Middleware_Json());
+        $client->addMiddleware(new \SoftLayer\Http\Middleware\Core());
+        $client->addMiddleware(new \SoftLayer\Http\Middleware\Json());
 
         return $client;
     }
@@ -116,7 +117,7 @@ class SoftLayer_Http_Client
     public function getRequest()
     {
         if(!$this->request) {
-            $this->request = new SoftLayer_Http_Request();
+            $this->request = new \SoftLayer\Http\Request();
         }
         return $this->request;
     }
@@ -124,7 +125,7 @@ class SoftLayer_Http_Client
     public function getResponse()
     {
         if(!$this->response) {
-            $this->response = new SoftLayer_Http_Response();
+            $this->response = new \SoftLayer\Http\Response();
         }
         return $this->response;
     }

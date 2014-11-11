@@ -1,6 +1,7 @@
 <?php
+namespace SoftLayer\Messaging;
 
-abstract class SoftLayer_Messaging_Entity
+abstract class Entity
 {
     protected static $emit = array();
 
@@ -15,7 +16,7 @@ abstract class SoftLayer_Messaging_Entity
     public function getShortType()
     {
         $type = $this->getType();
-        $type = explode('_', $type);
+        $type = explode('\\', $type);
         return array_pop($type);
     }
 
@@ -47,7 +48,7 @@ abstract class SoftLayer_Messaging_Entity
 
     public function serialize()
     {
-        $payload = new stdClass();
+        $payload = new \stdClass();
 
         foreach(static::$emit as $property) {
             // PHP can't distinguish between an empty array and an
@@ -55,7 +56,7 @@ abstract class SoftLayer_Messaging_Entity
             // needs to be a map - in this case represented by an empty
             // stdClass instance.
             if($property == 'fields' && empty($this->fields)) {
-                $this->fields = new stdClass;
+                $this->fields = new \stdClass;
             }
 
             $payload->$property = $this->$property;

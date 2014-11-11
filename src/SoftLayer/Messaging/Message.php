@@ -1,6 +1,7 @@
 <?php
+namespace SoftLayer\Messaging;
 
-class SoftLayer_Messaging_Message extends SoftLayer_Messaging_Entity
+class Message extends Entity
 {
     protected static $emit = array('id', 'body', 'fields', 'visibility_interval', 'visibility_delay');
 

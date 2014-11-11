@@ -1,13 +1,19 @@
 <?php
 
-class SoftLayer_Http_Middleware_Core implements SoftLayer_Http_Middleware_Interface
+namespace SoftLayer\Http\Middleware;
+
+use SoftLayer\Http\Request;
+use SoftLayer\Http\Response;
+use Exception;
+
+class Core implements MiddlewareInterface
 {
-    public function filterRequest(SoftLayer_Http_Request &$request)
+    public function filterRequest(Request &$request)
     {
         /* ... */
     }
 
-    public function filterResponse(SoftLayer_Http_Response &$response)
+    public function filterResponse(Response &$response)
     {
         $status = $response->getStatus();
 

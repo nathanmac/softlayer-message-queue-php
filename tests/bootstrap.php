@@ -1,8 +1,10 @@
 <?php
 
-set_include_path(get_include_path().PATH_SEPARATOR.dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'src');
+require dirname(__FILE__)."/../vendor/autoload.php";
 
-require_once 'SoftLayer/Messaging.php';
+Dotenv::load(__DIR__."/../");
+
+use SoftLayer\Messaging;
 
 define('QUEUE_ACCOUNT', getenv('QUEUE_ACCOUNT'));
 define('QUEUE_USERNAME', getenv('QUEUE_USERNAME'));
@@ -17,7 +19,7 @@ abstract class BaseTest extends PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        self::$messaging = new SoftLayer_Messaging();
+        self::$messaging = new Messaging();
         self::$messaging->authenticate(QUEUE_ACCOUNT, QUEUE_USERNAME, QUEUE_API_KEY);
         self::$queues = array();
         self::$topics = array();

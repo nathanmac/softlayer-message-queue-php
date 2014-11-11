@@ -1,6 +1,7 @@
 <?php
+namespace SoftLayer\Http;
 
-abstract class SoftLayer_Http_Base
+abstract class Base
 {
     private $method;
     private $path;

@@ -1,6 +1,7 @@
 <?php
+namespace SoftLayer\Messaging;
 
-class SoftLayer_Messaging_Subscription extends SoftLayer_Messaging_Entity
+class Subscription extends Entity
 {
     protected static $emit = array('id', 'endpoint_type', 'endpoint');
 

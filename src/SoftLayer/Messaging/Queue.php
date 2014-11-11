@@ -1,6 +1,7 @@
 <?php
+namespace SoftLayer\Messaging;
 
-class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
+class Queue extends Entity
 {
     protected static $emit = array('name', 'tags', 'visibility_interval', 'expiration', 'message_count', 'visible_message_count');
     protected $fetched = false;
@@ -126,7 +127,7 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
 
     public function message($body = '')
     {
-        $message = new SoftLayer_Messaging_Message();
+        $message = new \SoftLayer\Messaging\Message();
         $message->setParent($this);
         $message->setBody($body);
         return $message;
@@ -138,7 +139,7 @@ class SoftLayer_Messaging_Queue extends SoftLayer_Messaging_Entity
         $response = $this->getClient()->get("/queues/".$this->getName()."/messages", array('params' => array('batch' => $batch)));
 
         foreach($response->getBody()->items as $item) {
-            $message = new SoftLayer_Messaging_Message();
+            $message = new \SoftLayer\Messaging\Message();
             $message->setParent($this);
             $message->unserialize($item);
 

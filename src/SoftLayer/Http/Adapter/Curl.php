@@ -1,8 +1,14 @@
 <?php
 
-class SoftLayer_Http_Adapter_Curl implements SoftLayer_Http_Adapter_Interface
+namespace SoftLayer\Http\Adapter;
+
+use SoftLayer\Http\Request;
+use SoftLayer\Http\Response;
+use Exception;
+
+class Curl implements AdapterInterface
 {
-    public function call(SoftLayer_Http_Request &$request, SoftLayer_Http_Response &$response)
+    public function call(Request &$request, Response &$response)
     {
         $curl = curl_init();
 
